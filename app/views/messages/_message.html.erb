@@ -1,4 +1,5 @@
-<div class='message'>
-  <p><%= "#{message.user.email}: #{message.content}" %></p>
-  <p><%= "#{message.user.email}: #{message.hours}" %></p>
-</div>
+<% if message.hours == 0 %>
+  <p><%= "#{message.user.username}: #{message.content}" %></p>
+<% else %>
+  <p><%= "#{message.user.username}さんが#{message.hours_proc_hour}時間#{message.hours_proc_minute}分の勉強を完了しました。"%></p>
+<% end %>

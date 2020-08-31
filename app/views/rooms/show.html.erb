@@ -1,8 +1,11 @@
 <h1>Chat room</h1>
+
 <div id='messages' data-room_id="<%= @room.id %>">
   <%= render @messages %>
 </div>
 
 <%= label_tag :content, 'Say something:' %>
 <%= text_field_tag :content, nil, data: { behavior: 'room_speaker' } %>
-<%= number_field_tag :hours, nil, data: { behavior: 'room_speaker' } %>
+
+<%= label_tag :hours, "What's your study hours?:" %>
+<%= number_field_tag :hours, nil, data: { behavior: 'room_speaker' } %>分
