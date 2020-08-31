@@ -1,7 +1,9 @@
 <div>
   <ul>
     <% @rooms.each do |room| %>
-      <li><%= link_to "ROOM#{room.id}", room_path(room) %></li>
+      <li><%= link_to room.name, room_path(room) %></li>
     <% end %>
   </ul>
+
+  <%= link_to '新規作成', rooms_new_path %>
 </div>
