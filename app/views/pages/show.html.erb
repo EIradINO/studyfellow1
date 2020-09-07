@@ -1,2 +1,19 @@
-<h1>こんにちは</h1>
-<p>ユーザー用ページです。</p>
+<h1>こんにちは<%= current_user.username %>さん</h1>
+<table>
+  <tr>
+    <th>ユーザーネーム</th>
+    <th>メールアドレス</th>
+    <th>年代</th>
+    <th>週の勉強時間</th>
+    <th>得意科目</th>
+    <th>苦手科目</th>
+  </tr>
+  <tr>
+    <td><%= current_user.username %></td>
+    <td><%= current_user.email %></td>
+    <td><%= current_user.generation %></td>
+    <td><%= current_user.studyhours %>時間</td>
+    <td><%= current_user.favsub %></td>
+    <td><%= current_user.badsub %></td>
+  </tr>
+</table>

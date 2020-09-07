@@ -1,2 +1,10 @@
-<h1>ようこそ</h1>
-<p>トップページです。</p>
+<% if user_signed_in? %>
+<%= link_to 'ルーム検索', rooms_index_path %>
+<% else %>
+<div class="index-container">
+  <div class="welcome-msg">
+    <h1 id="index-welcome-msg">Welcome to Study Fellow!!</h1>
+    <p>StudyFellowへようこそ。同じ目標を持った仲間と一緒に中身の濃い勉強をしよう‼‼</p>
+  </div>
+</div>
+<% end %>

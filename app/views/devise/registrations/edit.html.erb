@@ -1,16 +1,15 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<%= render "devise/shared/error_messages", resource: resource %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
+<div class="sign-up-form user-data">
+  <h2>プロフィール設定</h2>
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autocomplete: "username" %>
+    <%= f.text_field :username, autocomplete: "usename" %>
+    <span data-placeholder="ユーザーネーム"></span>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email" %>
+    <span data-placeholder="メールアドレス"></span>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -18,31 +17,47 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+    <span data-placeholder="パスワード"></span>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <span data-placeholder="確認用パスワード"></span>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <span data-placeholder="現在のパスワード"></span>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <p><%= button_to "アカウントを削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+</div>
+
+<div class="sign-up-form set-detail">
+    <h2>詳細設定(後から設定できます)</h2>
+    <div class="field">
+      <p class="field-letter">週の勉強時間</p>
+      <p>週 <%= f.select :studyhours, [[5], [10], [20], [30], [40], [50], [60], [70], [80], [90], [100], [110], [120]] %> 時間程度</p>
+    </div>
+
+    <div class="field">
+      <p class="field-letter">得意科目</p>
+      <%= f.select :favsub, [['現代文(国語)'], ['古典'], ['数学(算数)'], ['物理'], ['化学'], ['生物'], ['地学'], ['社会'], ['日本史'], ['世界史'], ['倫理・政経'], ['英語']] %>
+    </div>
+
+    <div class="field">
+      <p class="field-letter">苦手科目</p>
+      <%= f.select :badsub, [['現代文(国語)'], ['古典'], ['数学(算数)'], ['物理'], ['化学'], ['生物'], ['地学'], ['社会'], ['日本史'], ['世界史'], ['倫理・政経'], ['英語']] %>
+    </div>
+
+    <div class="field">
+      <p class="field-letter">年齢</p>
+      <%= f.select :generation, [['小学生'], ['中学生'], ['高校生'], ['大学生'], ['社会人']] %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Sign up", class: "logbtn" %>
+    </div>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<%= javascript_pack_tag 'home/index' %>

@@ -7,20 +7,25 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=Damion&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <header>
+      <div class="header-container">
+        <a href="/"><h1 id="title">Study Fellow</h1></a>
         <nav>
-            <% if user_signed_in? %>
-              <%= link_to 'プロフィール変更', edit_user_registration_path %>
-              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-            <% else %>
-              <%= link_to 'サインアップ', new_user_registration_path %>
-              <%= link_to 'ログイン', new_user_session_path %>
-            <% end %>
+          <% if user_signed_in? %>
+          <div class="header-nav-item"><strong><%= link_to 'プロフィール', pages_show_path, class: 'header-button header-normal' %></strong></div>
+          <div class="header-nav-item"><%= link_to 'プロフィール設定', edit_user_registration_path, class: 'header-button header-emp' %></div>
+          <div class="header-nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'header-button header-normal' %></div>
+          <% else %>
+          <div class="header-nav-item"><%= link_to '新規登録', new_user_registration_path, class: 'header-button header-emp' %></div>
+          <div class="header-nav-item"><%= link_to 'ログイン', new_user_session_path, class: 'header-button header-normal' %></div>
+          <% end %>
         </nav>
-      </header>
+      </div>
+    </header>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
